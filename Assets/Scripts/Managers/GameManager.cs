@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utility;
 
 namespace Managers
@@ -8,6 +9,8 @@ namespace Managers
     {
         [SerializeField]
         private UIManager _ui_manager;
+        [SerializeField]
+        private SoundManager _sound_manager;
         [SerializeField]
         private Stats _stats;
         [SerializeField]
@@ -18,6 +21,8 @@ namespace Managers
         private ActivityEnum[] _active_activities;
         [SerializeField]
         private bool _first_move;
+        [SerializeField]
+        private bool _manual_quit;
         [SerializeField]
         private float _timer_seconds;
 
@@ -36,6 +41,16 @@ namespace Managers
             StartCoroutine(_ui_manager.HideBlackScreen());
         }
 
+        private void Update()
+        {
+            if (!_manual_quit && Input.GetKeyDown(KeyCode.Escape))
+            {
+                _manual_quit = true;
+                StopAllCoroutines();
+                StartCoroutine(QuitGame());
+            }
+        }
+
         private IEnumerator GameSystem()
         {
             while (IsNotGameOver())
@@ -52,10 +67,18 @@ namespace Managers
                 else
                 {
                     _stats.Evolve();
+                    _stats.AutoIncreaseActivities();
                     UpdateUiManagerAccordingStats();
                 }
             }
             //GameOver
+        }
+
+        private IEnumerator QuitGame()
+        {
+            StartCoroutine(_ui_manager.ShowBlackScreen());
+            yield return StartCoroutine(_sound_manager.FadeThemeMusic());
+            SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_INDEX);
         }
 
         private bool IsNotGameOver()

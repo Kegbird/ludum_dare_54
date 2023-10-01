@@ -9,6 +9,8 @@ namespace Managers
     public class MainMenuManager : MonoBehaviour
     {
         public Image _black_screen;
+        [SerializeField]
+        private SoundManager _sound_manager;
 
         private void Start()
         {
@@ -19,7 +21,8 @@ namespace Managers
         {
             IEnumerator ShowBlackScreenAndPlay()
             {
-                yield return StartCoroutine(ShowBlackScreen());
+                StartCoroutine(ShowBlackScreen());
+                yield return StartCoroutine(_sound_manager.FadeThemeMusic());
                 SceneManager.LoadScene(Constants.GAME_SCENE_INDEX);
             }
             StartCoroutine(ShowBlackScreenAndPlay());
@@ -29,7 +32,8 @@ namespace Managers
         {
             IEnumerator ShowBlackScreenAndQuit()
             {
-                yield return StartCoroutine(ShowBlackScreen());
+                StartCoroutine(ShowBlackScreen());
+                yield return StartCoroutine(_sound_manager.FadeThemeMusic());
                 Application.Quit();
             }
             StartCoroutine(ShowBlackScreenAndQuit());

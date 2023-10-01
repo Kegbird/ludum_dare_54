@@ -2,6 +2,14 @@
 {
     public static class ActivityConstants
     {
+        //THRESHOLDS
+        public static readonly float MONEY_HIGH_THRESHOLD = 80;
+        public static readonly float MONEY_LOW_THRESHOLD = 20;
+        public static readonly float HEALTH_THRESHOLD = 20;
+        public static readonly float STRESS_HIGH_THRESHOLD = 80;
+        public static readonly float STRESS_LOW_THRESHOLD = 20;
+
+
         //WORK
         public static readonly float WORK_STRESS_WEIGHT = 1/2f;
         public static readonly float WORK_MONEY_WEIGHT = 1f / 2f;
@@ -19,7 +27,7 @@
         public static readonly float RELATION_STRESS_WEIGHT = 1f / 4f;
         public static readonly float RELATION_MONEY_WEIGHT = -1f;
         public static readonly float RELATION_HAPPY_WEIGHT = 3f/2f;
-        //RELATION
+        //FAMILY
         public static readonly float FAMILY_STRESS_WEIGHT = 1f / 2f;
         public static readonly float FAMILY_HAPPY_WEIGHT = 1f / 4f;
         //HOBBY

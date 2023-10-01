@@ -27,6 +27,33 @@ namespace Utility
             _happy = EvaluateHappy();
         }
 
+        public void AutoIncreaseActivities()
+        {
+            if (_money <= ActivityConstants.MONEY_LOW_THRESHOLD)
+            {
+                _stress++;
+                _happy--;
+            }
+            else if(_money >= ActivityConstants.MONEY_HIGH_THRESHOLD)
+            {
+                _happy++;
+            }
+
+            if(_health <= ActivityConstants.HEALTH_THRESHOLD)
+            {
+                _stress++;
+            }
+
+            if(_stress >= ActivityConstants.STRESS_HIGH_THRESHOLD)
+            {
+                _health--;
+            }
+            else if(_stress <= ActivityConstants.STRESS_LOW_THRESHOLD)
+            {
+                _health++;
+            }
+        }
+
         public void IncreaseActivity(ActivityEnum activity)
         {
             switch (activity)
