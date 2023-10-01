@@ -131,26 +131,20 @@ namespace Managers
                     UpdateUiManagerAccordingStats();
                 }
                 _animation_manager.UpdateHeadAnimator(_stats[_stats_index]);
+                _ui_manager.UpdateBackground(_stats[_stats_index]._money);
             }
-
-            yield return new WaitForSeconds(1f);
 
             if(!IsNotGameOver())
             {
                 //GameOver
                 if (_stats[_stats_index]._health == 0)
-                    LoadScene(Constants.MAIN_MENU_SCENE_INDEX);
-                //LoadScene(Constants.GAME_OVER_NO_HEALTH);
+                    LoadScene(Constants.GAME_OVER_NO_HEALTH);
                 else if (_stats[_stats_index]._stress == 100)
-                    LoadScene(Constants.MAIN_MENU_SCENE_INDEX);
-                //LoadScene(Constants.GAME_OVER_STRESS);
+                    LoadScene(Constants.GAME_OVER_STRESS);
                 else if (_stats[_stats_index]._happy == 0)
-                    //LoadScene(Constants.GAME_OVER_NO_HAPPY);
-                    LoadScene(Constants.MAIN_MENU_SCENE_INDEX);
+                    LoadScene(Constants.GAME_OVER_NO_HAPPY);
                 else
-                    //LoadScene(Constants.GAME_OVER_NO_MONEY);
-                    LoadScene(Constants.MAIN_MENU_SCENE_INDEX);
-
+                    LoadScene(Constants.GAME_OVER_NO_MONEY);
             }
             else
             {

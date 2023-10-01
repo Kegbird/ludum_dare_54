@@ -37,12 +37,31 @@ namespace Managers
         private Image[] _active_activity_buttons;
         [SerializeField]
         private Sprite[] _activity_sprites;
+        [SerializeField]
+        private Sprite _no_money_background;
+        [SerializeField]
+        private Sprite _default_background;
+        [SerializeField]
+        private Sprite _rich_background;
+
+        [SerializeField]
+        private Image _background;
 
         private void Awake()
         {
             _active_activity_buttons = new Image[_active_activity_panel.transform.childCount];
             for (int i=0; i< _active_activity_panel.transform.childCount; i++)
                 _active_activity_buttons[i] = _active_activity_panel.transform.GetChild(i).GetComponent<Image>();
+        }
+
+        public void UpdateBackground(float money)
+        {
+            if (money <= 25f)
+                _background.sprite = _no_money_background;
+            else if (money > 25f && money < 75f)
+                _background.sprite = _default_background;
+            else
+                _background.sprite = _rich_background;
         }
 
         public void UpdateDayBar(float seconds, float level_time)

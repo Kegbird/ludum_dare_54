@@ -7,9 +7,9 @@
         public static short LEVEL_1_SCENE_INDEX = 2;
         public static short LEVEL_2_SCENE_INDEX = 3;
         public static short LEVEL_3_SCENE_INDEX = 4;
+        public static short GAME_OVER_NO_HAPPY = 2;
+        public static short GAME_OVER_STRESS = 3;
+        public static short GAME_OVER_NO_HEALTH = 4;
         public static short GAME_OVER_NO_MONEY = 5;
-        public static short GAME_OVER_NO_HEALTH = 6;
-        public static short GAME_OVER_STRESS = 7;
-        public static short GAME_OVER_NO_HAPPY= 8;
     }
 }

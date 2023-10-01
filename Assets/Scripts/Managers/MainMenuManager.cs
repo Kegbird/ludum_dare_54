@@ -11,6 +11,8 @@ namespace Managers
         public Image _black_screen;
         [SerializeField]
         private SoundManager _sound_manager;
+        [SerializeField]
+        private GameObject _credits_panel;
 
         private void Start()
         {
@@ -19,6 +21,7 @@ namespace Managers
 
         public void PlayButtonClick()
         {
+            _sound_manager.PlaySoundFx(0, 0.5f);
             IEnumerator ShowBlackScreenAndPlay()
             {
                 StartCoroutine(ShowBlackScreen());
@@ -28,8 +31,22 @@ namespace Managers
             StartCoroutine(ShowBlackScreenAndPlay());
         }
 
+        public void CreditsButtonClick()
+        {
+
+            _sound_manager.PlaySoundFx(0, 0.5f);
+            _credits_panel.SetActive(true);
+        }
+
+        public void BackButtonClick()
+        {
+            _sound_manager.PlaySoundFx(0, 0.5f);
+            _credits_panel.SetActive(false);
+        }
+
         public void ExitButtonClick()
         {
+            _sound_manager.PlaySoundFx(0, 0.5f);
             IEnumerator ShowBlackScreenAndQuit()
             {
                 StartCoroutine(ShowBlackScreen());
