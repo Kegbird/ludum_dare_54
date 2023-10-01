@@ -10,6 +10,8 @@ namespace Managers
         [SerializeField]
         private UIManager _ui_manager;
         [SerializeField]
+        private AnimationManager _animation_manager;
+        [SerializeField]
         private SoundManager _sound_manager;
         [SerializeField]
         private Stats[] _stats;
@@ -31,6 +33,8 @@ namespace Managers
         private float _timer;
         [SerializeField]
         private int _stats_index;
+        [SerializeField]
+        private int _next_level;
 
         private void Awake()
         {
@@ -75,7 +79,6 @@ namespace Managers
 
                 if (_timer == 0)
                 {
-                    //Win
                     break;
                 }
                 else
@@ -85,8 +88,45 @@ namespace Managers
                     _stats[_stats_index].ClampAllStats();
                     UpdateUiManagerAccordingStats();
                 }
+                _animation_manager.UpdateHeadAnimator(_stats[_stats_index]);
             }
-            //GameOver
+
+            yield return new WaitForSeconds(1f);
+
+            if(!IsNotGameOver())
+            {
+                //GameOver
+                if (_stats[_stats_index]._health == 0)
+                    LoadScene(Constants.MAIN_MENU_SCENE_INDEX);
+                //LoadScene(Constants.GAME_OVER_NO_HEALTH);
+                else if (_stats[_stats_index]._stress == 100)
+                    LoadScene(Constants.MAIN_MENU_SCENE_INDEX);
+                //LoadScene(Constants.GAME_OVER_STRESS);
+                else if (_stats[_stats_index]._happy == 0)
+                    //LoadScene(Constants.GAME_OVER_NO_HAPPY);
+                    LoadScene(Constants.MAIN_MENU_SCENE_INDEX);
+                else
+                    //LoadScene(Constants.GAME_OVER_NO_MONEY);
+                    LoadScene(Constants.MAIN_MENU_SCENE_INDEX);
+
+            }
+            else
+            {
+                //Win
+                LoadScene(_next_level);
+            }
+        }
+
+        private void LoadScene(int scene_index)
+        {
+            IEnumerator LoadSceneCoroutine(int scene_index)
+            {
+                StartCoroutine(_ui_manager.ShowBlackScreen());
+                yield return StartCoroutine(_sound_manager.FadeThemeMusic());
+                SceneManager.LoadScene(scene_index);
+            }
+
+            StartCoroutine(LoadSceneCoroutine(scene_index));
         }
 
         private IEnumerator QuitGame()

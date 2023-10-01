@@ -23,7 +23,7 @@ namespace Managers
             {
                 StartCoroutine(ShowBlackScreen());
                 yield return StartCoroutine(_sound_manager.FadeThemeMusic());
-                SceneManager.LoadScene(Constants.GAME_SCENE_INDEX);
+                SceneManager.LoadScene(Constants.INTRO_SCENE_INDEX);
             }
             StartCoroutine(ShowBlackScreenAndPlay());
         }
