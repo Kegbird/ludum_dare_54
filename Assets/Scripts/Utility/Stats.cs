@@ -18,7 +18,9 @@ namespace Utility
         public int _workout;
         public int _relax;
 
-        public Stats(float stress, float health, float money, float happy, int work, int overtime, int friends, int relation, int family, int hobby, int workout, int relax)
+        public float _money_decay;
+
+        public Stats(float stress, float health, float money, float happy, int work, int overtime, int friends, int relation, int family, int hobby, int workout, int relax, float money_decay)
         {
             _stress = stress;
             _health = health;
@@ -32,6 +34,7 @@ namespace Utility
             _hobby = hobby;
             _workout = workout;
             _relax = relax;
+            _money_decay = money_decay;
         }
 
         public void Evolve()
@@ -67,6 +70,14 @@ namespace Utility
             {
                 _health++;
             }
+        }
+
+        public void ClampAllStats()
+        {
+            _health = Mathf.Clamp(_health, 0, 100);
+            _stress = Mathf.Clamp(_stress, 0, 100);
+            _happy = Mathf.Clamp(_happy, 0, 100);
+            _money = Mathf.Clamp(_money, 0, 100);
         }
 
         public void IncreaseActivity(ActivityEnum activity)
@@ -137,7 +148,7 @@ namespace Utility
 
         private float EvaluateStress()
         {
-            float value = _stress +
+            return _stress +
                 _work * ActivityConstants.WORK_STRESS_WEIGHT +
                 _overtime * ActivityConstants.OVERTIME_STRESS_WEIGHT +
                 _friends * ActivityConstants.FRIENDS_STRESS_WEIGHT +
@@ -146,39 +157,36 @@ namespace Utility
                 _hobby * ActivityConstants.HOBBY_STRESS_WEIGHT +
                 _workout * ActivityConstants.WORKOUT_STRESS_WEIGHT +
                 _relax * ActivityConstants.RELAX_STRESS_WEIGHT;
-            return Mathf.Clamp(value, 0, 100);
         }
 
         private float EvaluateHealth()
         {
-            float value = _health +
+            return _health +
                 _overtime * ActivityConstants.OVERTIME_HEALTH_WEIGHT +
                 _workout * ActivityConstants.WORKOUT_HEALTH_WEIGHT +
                 _relax * ActivityConstants.RELAX_HEALTH_WEIGHT;
-            return Mathf.Clamp(value, 0, 100);
         }
 
         private float EvaluateMoney()
         {
-            float value = _money +
+            return _money +
                 _work * ActivityConstants.WORK_MONEY_WEIGHT +
                 _overtime * ActivityConstants.OVERTIME_MONEY_WEIGHT +
                 (_friends >= 4 ? _friends * ActivityConstants.FRIENDS_MONEY_WEIGHT : 0f) +
                 _relation * ActivityConstants.RELATION_MONEY_WEIGHT +
-                _hobby * ActivityConstants.HOBBY_MONEY_WEIGHT;
-            return Mathf.Clamp(value, 0, 100);
+                _hobby * ActivityConstants.HOBBY_MONEY_WEIGHT
+                - _money_decay;
         }
 
         private float EvaluateHappy()
         {
-            float value = _happy +
+            return _happy +
                  (_work >= 4 ? _work * ActivityConstants.WORK_HAPPY_WEIGHT : 0f) +
                 _overtime * ActivityConstants.OVERTIME_HAPPY_WEIGHT +
                 _friends * ActivityConstants.FRIENDS_HAPPY_WEIGHT +
                 _relation * ActivityConstants.RELATION_HAPPY_WEIGHT +
                 _family * ActivityConstants.FAMILY_HAPPY_WEIGHT +
                 _hobby * ActivityConstants.HOBBY_HAPPY_WEIGHT;
-            return Mathf.Clamp(value, 0, 100);
         }
     }
 }

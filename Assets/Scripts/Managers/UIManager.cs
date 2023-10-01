@@ -29,11 +29,11 @@ namespace Managers
         [SerializeField]
         private GameObject _active_activity_panel;
         [SerializeField]
-        private TextMeshProUGUI _timer_text;
-        [SerializeField]
         private Image[] _activity_buttons;
         [SerializeField]
         private Image[] _active_activity_buttons;
+        [SerializeField]
+        private Image _week_bar;
 
         private void Awake()
         {
@@ -42,9 +42,9 @@ namespace Managers
                 _active_activity_buttons[i] = _active_activity_panel.transform.GetChild(i).GetComponent<Image>();
         }
 
-        public void UpdateTimer(float seconds)
+        public void UpdateWeekBar(float seconds, float level_time)
         {
-            _timer_text.text = seconds.ToString("N"+0);
+            _week_bar.fillAmount = seconds/level_time;
         }
 
         public void SetStressText(float stress)

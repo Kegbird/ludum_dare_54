@@ -26,7 +26,9 @@ namespace Managers
         [SerializeField]
         private bool _manual_quit;
         [SerializeField]
-        private float _timer_seconds;
+        private float _level_time;
+        [SerializeField]
+        private float _timer;
         [SerializeField]
         private int _stats_index;
 
@@ -34,10 +36,11 @@ namespace Managers
         {
             CreateGameStats();
             _first_move = true;
-            _ui_manager.UpdateTimer(_timer_seconds);
             int button_count = _ui_manager.GetActiveActivityButtonsCount();
             _active_activities = new ActivityEnum[button_count];
             _selected_activity = ActivityEnum.NONE;
+            _timer = _level_time;
+            _ui_manager.UpdateWeekBar(_timer, _level_time);
             UpdateUiManagerAccordingStats();
         }
 
@@ -59,7 +62,7 @@ namespace Managers
         private void CreateGameStats()
         {
             _stats = new Stats[1];
-            _stats[0] = new Stats(0, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0);
+            _stats[0] = new Stats(0, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f/2f);
         }
 
         private IEnumerator GameSystem()
@@ -67,10 +70,10 @@ namespace Managers
             while (IsNotGameOver())
             {
                 yield return new WaitForSeconds(_simulation_step);
-                _timer_seconds-= _simulation_step;
-                _ui_manager.UpdateTimer(_timer_seconds);
+                _timer -= 1;
+                _ui_manager.UpdateWeekBar(_timer, _level_time);
 
-                if (_timer_seconds == 0)
+                if (_timer == 0)
                 {
                     //Win
                     break;
@@ -79,6 +82,7 @@ namespace Managers
                 {
                     _stats[_stats_index].Evolve();
                     _stats[_stats_index].AutoIncreaseActivities();
+                    _stats[_stats_index].ClampAllStats();
                     UpdateUiManagerAccordingStats();
                 }
             }
