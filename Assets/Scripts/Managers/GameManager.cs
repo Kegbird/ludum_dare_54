@@ -79,10 +79,8 @@ namespace Managers
                     PopulateBrainGrid(8, ActivityEnum.WORK);
                     break;
                 case 2:
-                    PopulateBrainGrid(8, ActivityEnum.WORK);
                     break;
                 default:
-                    PopulateBrainGrid(8, ActivityEnum.WORK);
                     break;
             }
         }
@@ -107,8 +105,11 @@ namespace Managers
 
         private void CreateGameStats()
         {
-            _stats = new Stats[1];
+            _stats = new Stats[4];
             _stats[0] = new Stats(0, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f/2f, 0);
+            _stats[1] = new Stats(0, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f / 2f, 0);
+            _stats[2] = new Stats(0, 10, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f / 2f, 0);
+            _stats[3] = new Stats(0, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f, 1f/8f);
         }
 
         private IEnumerator GameSystem()
@@ -149,8 +150,7 @@ namespace Managers
             else
             {
                 //Win
-                //LoadScene(_next_level);
-                LoadScene(Constants.MAIN_MENU_SCENE_INDEX);
+                LoadScene(_next_level);
             }
         }
 

@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuScene.unity
     guid: da16d40dd0bccbf4994fd2300cd2c3bf
   - enabled: 1
-    path: Assets/Scenes/CrunchyWeekScene.unity
+    path: Assets/Scenes/TutorialWeekScene.unity
+    guid: 92c8448a6e089ed478403c3edd6d5544
+  - enabled: 1
+    path: Assets/Scenes/CrunchWeekScene.unity
     guid: a12cbfc0086e8b34588b0d522617d9ae
+  - enabled: 1
+    path: Assets/Scenes/FluWeekScene.unity
+    guid: 1d5c8660f8bd2b64e9eea0e88caf8063
+  - enabled: 1
+    path: Assets/Scenes/HolidayWeekScene.unity
+    guid: fb14eca1b309c1d4aa36fc999ae143e0
   - enabled: 1
     path: Assets/Scenes/GameOverNoHappy.unity
     guid: 103be5e42c429ab4681506809b0b88dd
