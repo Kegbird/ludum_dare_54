@@ -106,7 +106,7 @@ namespace Managers
         private void CreateGameStats()
         {
             _stats = new Stats[1];
-            _stats[0] = new Stats(0, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f/2f);
+            _stats[0] = new Stats(0, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f/2f, 0);
         }
 
         private IEnumerator GameSystem()

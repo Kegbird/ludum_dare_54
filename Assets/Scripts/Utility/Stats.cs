@@ -18,9 +18,10 @@ namespace Utility
         public int _workout;
         public int _relax;
 
-        public float _money_decay;
+        public float _money_decrement;
+        public float _stress_increment;
 
-        public Stats(float stress, float health, float money, float happy, int work, int overtime, int friends, int relation, int family, int hobby, int workout, int relax, float money_decay)
+        public Stats(float stress, float health, float money, float happy, int work, int overtime, int friends, int relation, int family, int hobby, int workout, int relax, float money_decay, float stress_increment)
         {
             _stress = stress;
             _health = health;
@@ -34,7 +35,8 @@ namespace Utility
             _hobby = hobby;
             _workout = workout;
             _relax = relax;
-            _money_decay = money_decay;
+            _money_decrement = money_decay;
+            _stress_increment = stress_increment;
         }
 
         public void Evolve()
@@ -156,7 +158,8 @@ namespace Utility
                 (_family >= 4 ? _family*ActivityConstants.FAMILY_STRESS_WEIGHT : 0f) +
                 _hobby * ActivityConstants.HOBBY_STRESS_WEIGHT +
                 _workout * ActivityConstants.WORKOUT_STRESS_WEIGHT +
-                _relax * ActivityConstants.RELAX_STRESS_WEIGHT;
+                _relax * ActivityConstants.RELAX_STRESS_WEIGHT +
+                _stress_increment;
         }
 
         private float EvaluateHealth()
@@ -175,7 +178,7 @@ namespace Utility
                 (_friends >= 4 ? _friends * ActivityConstants.FRIENDS_MONEY_WEIGHT : 0f) +
                 _relation * ActivityConstants.RELATION_MONEY_WEIGHT +
                 _hobby * ActivityConstants.HOBBY_MONEY_WEIGHT
-                - _money_decay;
+                - _money_decrement;
         }
 
         private float EvaluateHappy()
