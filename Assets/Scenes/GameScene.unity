@@ -2175,7 +2175,7 @@ GameObject:
   - component: {fileID: 596080800}
   - component: {fileID: 596080799}
   m_Layer: 5
-  m_Name: WeekBarFill
+  m_Name: DayBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2188,7 +2188,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596080797}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2221,7 +2221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 494adb81c1940d04c91fa4815f163514, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a177fac3dcdd4a42af3ec12a29aafe1, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3398,7 +3398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1003859415
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4307,6 +4307,7 @@ MonoBehaviour:
   _happy_text: {fileID: 1611608479}
   _happy_bar: {fileID: 1472236538}
   _active_activity_panel: {fileID: 1209674563}
+  _day_bar: {fileID: 2129599912}
   _activity_buttons:
   - {fileID: 220925110}
   - {fileID: 813095769}
@@ -4317,7 +4318,6 @@ MonoBehaviour:
   - {fileID: 1230702467}
   - {fileID: 983985613}
   _active_activity_buttons: []
-  _week_bar: {fileID: 596080799}
 --- !u!82 &1156026538
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4325,7 +4325,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156026534}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 00c10a0b41b474946a5a5b1581de902a, type: 3}
@@ -4428,7 +4428,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _theme_audio_source: {fileID: 1156026538}
   _sound_fx_audio_source: {fileID: 1156026540}
-  _sound_fx_audio_clip: []
+  _sound_fx_audio_clip:
+  - {fileID: 8300000, guid: 22758bee126c38c40a3fa2030b9efc3a, type: 3}
+  - {fileID: 8300000, guid: 22758bee126c38c40a3fa2030b9efc3a, type: 3}
 --- !u!82 &1156026540
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8885,7 +8887,7 @@ GameObject:
   - component: {fileID: 2129599913}
   - component: {fileID: 2129599912}
   m_Layer: 5
-  m_Name: WeekBar
+  m_Name: DayBarFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8898,7 +8900,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129599910}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8907,10 +8909,10 @@ RectTransform:
   m_Father: {fileID: 1794794920}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.05, y: 0.85}
-  m_AnchorMax: {x: 0.95, y: 0.95}
+  m_AnchorMin: {x: 0.25, y: 0.85}
+  m_AnchorMax: {x: 0.75, y: 0.95}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -0.0000076293945}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2129599912
 MonoBehaviour:
@@ -8925,21 +8927,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 4684820cffd048948af4b7ce4ed8ac98, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &2129599913

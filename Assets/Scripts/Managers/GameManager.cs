@@ -44,7 +44,7 @@ namespace Managers
             _active_activities = new ActivityEnum[button_count];
             _selected_activity = ActivityEnum.NONE;
             _timer = _level_time;
-            _ui_manager.UpdateWeekBar(_timer, _level_time);
+            _ui_manager.UpdateDayBar(_timer, _level_time);
             UpdateUiManagerAccordingStats();
         }
 
@@ -75,7 +75,7 @@ namespace Managers
             {
                 yield return new WaitForSeconds(_simulation_step);
                 _timer -= 1;
-                _ui_manager.UpdateWeekBar(_timer, _level_time);
+                _ui_manager.UpdateDayBar(_timer, _level_time);
 
                 if (_timer == 0)
                 {
@@ -113,7 +113,8 @@ namespace Managers
             else
             {
                 //Win
-                LoadScene(_next_level);
+                //LoadScene(_next_level);
+                LoadScene(Constants.MAIN_MENU_SCENE_INDEX);
             }
         }
 
@@ -157,6 +158,7 @@ namespace Managers
         {
             _selected_activity = (ActivityEnum) activity;
             _ui_manager.SetActivityButtonSelected(_selected_activity);
+            _sound_manager.PlaySoundFx(0, 0.5f);
         }
 
         public void SetActiveActivity(int index)
@@ -175,6 +177,7 @@ namespace Managers
             _stats[_stats_index].DecreaseActivity(current_activity);
             _stats[_stats_index].IncreaseActivity(_selected_activity);
             _ui_manager.UpdateActiveActivityButton(index, _selected_activity);
+            _sound_manager.PlaySoundFx(1, 0.5f);
 
         }
     }
