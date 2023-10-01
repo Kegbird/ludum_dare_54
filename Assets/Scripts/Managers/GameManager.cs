@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utility;
+using Random = UnityEngine.Random;
 
 namespace Managers
 {
@@ -35,13 +37,13 @@ namespace Managers
         private int _stats_index;
         [SerializeField]
         private int _next_level;
+        [SerializeField]
+        private int _quest_index;
 
         private void Awake()
         {
             CreateGameStats();
             _first_move = true;
-            int button_count = _ui_manager.GetActiveActivityButtonsCount();
-            _active_activities = new ActivityEnum[button_count];
             _selected_activity = ActivityEnum.NONE;
             _timer = _level_time;
             _ui_manager.UpdateDayBar(_timer, _level_time);
@@ -51,6 +53,7 @@ namespace Managers
         private void Start()
         {
             StartCoroutine(_ui_manager.HideBlackScreen());
+            SetUpActiveActivities();
         }
 
         private void Update()
@@ -60,6 +63,43 @@ namespace Managers
                 _manual_quit = true;
                 StopAllCoroutines();
                 StartCoroutine(QuitGame());
+            }
+        }
+
+        private void SetUpActiveActivities()
+        {
+            int button_count = _ui_manager.GetActiveActivityButtonsCount();
+            _active_activities = new ActivityEnum[button_count];
+
+            switch (_quest_index)
+            {
+                case 0:
+                    break;
+                case 1:
+                    PopulateBrainGrid(2, ActivityEnum.WORK);
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void PopulateBrainGrid(int number, ActivityEnum activity)
+        {
+            for(int i=0; i<number; i++)
+            {
+                int j = Random.Range(0, _active_activities.Length);
+                if (_active_activities[j] == ActivityEnum.NONE)
+                {
+                    _active_activities[j] = activity;
+                    _stats[_stats_index].IncreaseActivity(activity);
+                    _ui_manager.UpdateActiveActivityButton(j, activity, false);
+                }
+                else
+                {
+                    i--;
+                }
             }
         }
 
@@ -176,7 +216,7 @@ namespace Managers
             _active_activities[index] = _selected_activity;
             _stats[_stats_index].DecreaseActivity(current_activity);
             _stats[_stats_index].IncreaseActivity(_selected_activity);
-            _ui_manager.UpdateActiveActivityButton(index, _selected_activity);
+            _ui_manager.UpdateActiveActivityButton(index, _selected_activity, true);
             _sound_manager.PlaySoundFx(1, 0.5f);
 
         }

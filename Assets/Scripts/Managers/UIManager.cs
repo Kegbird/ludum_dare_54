@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utility;
 using Image = UnityEngine.UI.Image;
 
@@ -97,7 +98,7 @@ namespace Managers
             _activity_buttons[activity_index].color = Color.yellow;
         }
 
-        public void UpdateActiveActivityButton(int index, ActivityEnum activity)
+        public void UpdateActiveActivityButton(int index, ActivityEnum activity, bool interactable)
         {
             switch (activity)
             {
@@ -128,6 +129,7 @@ namespace Managers
                     _active_activity_buttons[index].color = Color.cyan;
                     break;
             }
+            _active_activity_buttons[index].GetComponent<Button>().interactable = interactable;
         }
 
         public int GetActiveActivityButtonsCount()

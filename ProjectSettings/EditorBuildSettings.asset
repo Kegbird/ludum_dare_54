@@ -11,4 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: a12cbfc0086e8b34588b0d522617d9ae
+  - enabled: 1
+    path: Assets/Scenes/GameOverNoMoney.unity
+    guid: 6a5949ab33fc1b0409f6addacead33eb
+  - enabled: 1
+    path: Assets/Scenes/GameOverNoHealth.unity
+    guid: 372108b49f080d04c9b1f0d89f1ed290
+  - enabled: 1
+    path: Assets/Scenes/GameOverStress.unity
+    guid: 5db39fc3d71829e4a98387cd686449ce
+  - enabled: 1
+    path: Assets/Scenes/GameOverNoHappy.unity
+    guid: 103be5e42c429ab4681506809b0b88dd
   m_configObjects: {}
