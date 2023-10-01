@@ -44,7 +44,7 @@ namespace Managers
 
         public void UpdateTimer(float seconds)
         {
-            _timer_text.text = seconds.ToString();
+            _timer_text.text = seconds.ToString("N"+0);
         }
 
         public void SetStressText(float stress)

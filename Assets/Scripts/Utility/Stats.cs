@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
+
 namespace Utility
 {
-
-    [CreateAssetMenu(fileName = "Stats", menuName = "ScriptableObjects", order = 1)]
-    public class Stats : ScriptableObject
+    public class Stats
     {
         public float _stress;
         public float _health;
@@ -18,6 +17,22 @@ namespace Utility
         public int _hobby;
         public int _workout;
         public int _relax;
+
+        public Stats(float stress, float health, float money, float happy, int work, int overtime, int friends, int relation, int family, int hobby, int workout, int relax)
+        {
+            _stress = stress;
+            _health = health;
+            _money = money;
+            _happy = happy;
+            _work = work;
+            _overtime = overtime;
+            _friends = friends;
+            _relation = relation;
+            _family = family;
+            _hobby = hobby;
+            _workout = workout;
+            _relax = relax;
+        }
 
         public void Evolve()
         {

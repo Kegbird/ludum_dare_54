@@ -12,7 +12,7 @@ namespace Managers
         [SerializeField]
         private SoundManager _sound_manager;
         [SerializeField]
-        private Stats _stats;
+        private Stats[] _stats;
         [SerializeField]
         private bool _lose;
         [SerializeField]
@@ -22,12 +22,17 @@ namespace Managers
         [SerializeField]
         private bool _first_move;
         [SerializeField]
+        private float _simulation_step;
+        [SerializeField]
         private bool _manual_quit;
         [SerializeField]
         private float _timer_seconds;
+        [SerializeField]
+        private int _stats_index;
 
         private void Awake()
         {
+            CreateGameStats();
             _first_move = true;
             _ui_manager.UpdateTimer(_timer_seconds);
             int button_count = _ui_manager.GetActiveActivityButtonsCount();
@@ -51,12 +56,18 @@ namespace Managers
             }
         }
 
+        private void CreateGameStats()
+        {
+            _stats = new Stats[1];
+            _stats[0] = new Stats(0, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0);
+        }
+
         private IEnumerator GameSystem()
         {
             while (IsNotGameOver())
             {
-                yield return new WaitForSeconds(1f);
-                _timer_seconds--;
+                yield return new WaitForSeconds(_simulation_step);
+                _timer_seconds-= _simulation_step;
                 _ui_manager.UpdateTimer(_timer_seconds);
 
                 if (_timer_seconds == 0)
@@ -66,8 +77,8 @@ namespace Managers
                 }
                 else
                 {
-                    _stats.Evolve();
-                    _stats.AutoIncreaseActivities();
+                    _stats[_stats_index].Evolve();
+                    _stats[_stats_index].AutoIncreaseActivities();
                     UpdateUiManagerAccordingStats();
                 }
             }
@@ -83,19 +94,19 @@ namespace Managers
 
         private bool IsNotGameOver()
         {
-            return _stats._money != 0 && _stats._health != 0 && _stats._stress != 100 && _stats._happy != 0;
+            return _stats[_stats_index]._money != 0 && _stats[_stats_index]._health != 0 && _stats[_stats_index]._stress != 100 && _stats[_stats_index]._happy != 0;
         }
 
         private void UpdateUiManagerAccordingStats()
         {
-            _ui_manager.SetStressText(_stats._stress);
-            _ui_manager.SetStressBarFill(_stats._stress);
-            _ui_manager.SetHealthText(_stats._health);
-            _ui_manager.SetHealthBarFill(_stats._health);
-            _ui_manager.SetMoneyText(_stats._money);
-            _ui_manager.SetMoneyBarFill(_stats._money);
-            _ui_manager.SetHappyText(_stats._happy);
-            _ui_manager.SetHappyBarFill(_stats._happy);
+            _ui_manager.SetStressText(_stats[_stats_index]._stress);
+            _ui_manager.SetStressBarFill(_stats[_stats_index]._stress);
+            _ui_manager.SetHealthText(_stats[_stats_index]._health);
+            _ui_manager.SetHealthBarFill(_stats[_stats_index]._health);
+            _ui_manager.SetMoneyText(_stats[_stats_index]._money);
+            _ui_manager.SetMoneyBarFill(_stats[_stats_index]._money);
+            _ui_manager.SetHappyText(_stats[_stats_index]._happy);
+            _ui_manager.SetHappyBarFill(_stats[_stats_index]._happy);
         }
 
         public void SetSelectedActivity(int activity)
@@ -117,8 +128,8 @@ namespace Managers
 
             ActivityEnum current_activity = _active_activities[index];
             _active_activities[index] = _selected_activity;
-            _stats.DecreaseActivity(current_activity);
-            _stats.IncreaseActivity(_selected_activity);
+            _stats[_stats_index].DecreaseActivity(current_activity);
+            _stats[_stats_index].IncreaseActivity(_selected_activity);
             _ui_manager.UpdateActiveActivityButton(index, _selected_activity);
 
         }

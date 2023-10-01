@@ -4106,13 +4106,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ui_manager: {fileID: 1156026537}
   _sound_manager: {fileID: 1156026539}
-  _stats: {fileID: 11400000, guid: 362fb6ad380011149be018cce00fb14a, type: 2}
   _lose: 0
   _selected_activity: 0
   _active_activities: 
   _first_move: 0
+  _simulation_step: 1
   _manual_quit: 0
   _timer_seconds: 120
+  _stats_index: 0
 --- !u!4 &1156026536
 Transform:
   m_ObjectHideFlags: 0
