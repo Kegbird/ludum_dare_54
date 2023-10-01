@@ -9,7 +9,7 @@
         RELATION,
         FAMILY,
         HOBBY,
-        WORKOUT,
-        RELAX
+        RELAX,
+        WORKOUT
     }
 }
