@@ -35,6 +35,8 @@ namespace Managers
         private Image[] _activity_buttons;
         [SerializeField]
         private Image[] _active_activity_buttons;
+        [SerializeField]
+        private Sprite[] _activity_sprites;
 
         private void Awake()
         {
@@ -105,31 +107,36 @@ namespace Managers
                 case ActivityEnum.NONE:
                     break;
                 case ActivityEnum.WORK:
-                    _active_activity_buttons[index].color = Color.red;
+                    _active_activity_buttons[index].sprite = _activity_sprites[0];
                     break;
                 case ActivityEnum.OVERTIME:
-                    _active_activity_buttons[index].color = new Color(147f/255f, 27f / 255f, 36f / 255f);
+                    _active_activity_buttons[index].sprite = _activity_sprites[1];
                     break;
                 case ActivityEnum.FRIENDS:
-                    _active_activity_buttons[index].color = new Color(141f / 255f, 211f / 255f, 94f / 255f);
+                    _active_activity_buttons[index].sprite = _activity_sprites[2];
                     break;
                 case ActivityEnum.RELATION:
-                    _active_activity_buttons[index].color = new Color(211f / 255f, 155f / 255f, 209f / 255f);
+                    _active_activity_buttons[index].sprite = _activity_sprites[3];
                     break;
                 case ActivityEnum.FAMILY:
-                    _active_activity_buttons[index].color = Color.blue;
+                    _active_activity_buttons[index].sprite = _activity_sprites[4];
                     break;
                 case ActivityEnum.HOBBY:
-                    _active_activity_buttons[index].color = Color.yellow;
+                    _active_activity_buttons[index].sprite = _activity_sprites[5];
                     break;
                 case ActivityEnum.WORKOUT:
-                    _active_activity_buttons[index].color = new Color(211f / 255f, 123f / 255f, 29f / 255f);
+                    _active_activity_buttons[index].sprite = _activity_sprites[6];
                     break;
                 case ActivityEnum.RELAX:
-                    _active_activity_buttons[index].color = Color.cyan;
+                    _active_activity_buttons[index].sprite = _activity_sprites[7];
                     break;
             }
-            _active_activity_buttons[index].GetComponent<Button>().interactable = interactable;
+            if(!interactable)
+            {
+                _active_activity_buttons[index].GetComponent<Button>().interactable = interactable;
+                _active_activity_buttons[index].color = new Color(133f/255f, 133f / 255f, 133f / 255f);
+            }
+
         }
 
         public int GetActiveActivityButtonsCount()

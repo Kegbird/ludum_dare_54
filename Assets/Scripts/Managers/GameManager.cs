@@ -76,11 +76,13 @@ namespace Managers
                 case 0:
                     break;
                 case 1:
-                    PopulateBrainGrid(2, ActivityEnum.WORK);
+                    PopulateBrainGrid(8, ActivityEnum.WORK);
                     break;
                 case 2:
+                    PopulateBrainGrid(8, ActivityEnum.WORK);
                     break;
                 default:
+                    PopulateBrainGrid(8, ActivityEnum.WORK);
                     break;
             }
         }
