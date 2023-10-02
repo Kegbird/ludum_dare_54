@@ -12,7 +12,13 @@ namespace Managers
         [SerializeField]
         private SoundManager _sound_manager;
         [SerializeField]
+        private Image _tutorial_panel;
+        [SerializeField]
         private GameObject _credits_panel;
+        [SerializeField]
+        private int _tutorial_slide_index;
+        [SerializeField]
+        private Sprite[] _slides;
 
         private void Start()
         {
@@ -31,11 +37,30 @@ namespace Managers
             StartCoroutine(ShowBlackScreenAndPlay());
         }
 
+        public void TutorialButtonClick()
+        {
+            _sound_manager.PlaySoundFx(0, 0.5f);
+            _tutorial_slide_index = 0;
+            _tutorial_panel.gameObject.SetActive(true);
+        }
+
         public void CreditsButtonClick()
         {
-
             _sound_manager.PlaySoundFx(0, 0.5f);
             _credits_panel.SetActive(true);
+        }
+
+        public void NextButtonClick()
+        {
+            _sound_manager.PlaySoundFx(0, 0.5f);
+            _tutorial_slide_index++;
+            if (_tutorial_slide_index == 4)
+            {
+                _tutorial_slide_index = 0;
+                _tutorial_panel.gameObject.SetActive(false);
+            }
+            _tutorial_panel.sprite = _slides[_tutorial_slide_index];
+
         }
 
         public void BackButtonClick()
