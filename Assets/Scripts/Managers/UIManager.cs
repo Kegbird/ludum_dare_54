@@ -153,7 +153,7 @@ namespace Managers
             if(!interactable)
             {
                 _active_activity_buttons[index].GetComponent<Button>().interactable = interactable;
-                _active_activity_buttons[index].color = new Color(133f/255f, 133f / 255f, 133f / 255f);
+                _active_activity_buttons[index].color = new Color(89f/ 255f, 89f / 255f, 89f / 255f);
             }
 
         }

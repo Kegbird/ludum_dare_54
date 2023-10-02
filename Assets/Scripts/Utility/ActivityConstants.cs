@@ -42,6 +42,7 @@
         public static readonly float RELAX_STRESS_WEIGHT = -3f/2f;
         //public static readonly float RELAX_HAPPY_WEIGHT = -1f / 4f;
         public static readonly float RELAX_HEALTH_WEIGHT = 1f/4f;
+        public static readonly float RELAX_HAPPY_WEIGHT = -1f/4f;
 
     }
 }

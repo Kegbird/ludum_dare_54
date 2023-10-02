@@ -68,10 +68,6 @@ namespace Utility
             {
                 _health--;
             }
-            else if(_stress <= ActivityConstants.STRESS_LOW_THRESHOLD)
-            {
-                _health++;
-            }
         }
 
         public void ClampAllStats()
@@ -189,6 +185,7 @@ namespace Utility
                 _friends * ActivityConstants.FRIENDS_HAPPY_WEIGHT +
                 _relation * ActivityConstants.RELATION_HAPPY_WEIGHT +
                 _family * ActivityConstants.FAMILY_HAPPY_WEIGHT +
+                _relax * ActivityConstants.RELAX_HAPPY_WEIGHT +
                 _hobby * ActivityConstants.HOBBY_HAPPY_WEIGHT;
         }
     }

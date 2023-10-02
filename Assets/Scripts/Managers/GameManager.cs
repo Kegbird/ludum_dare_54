@@ -80,7 +80,9 @@ namespace Managers
                     break;
                 case 2:
                     break;
-                default:
+                case 3:
+                    PopulateBrainGrid(3, ActivityEnum.FAMILY);
+                    PopulateBrainGrid(2, ActivityEnum.FRIENDS);
                     break;
             }
         }
@@ -106,10 +108,10 @@ namespace Managers
         private void CreateGameStats()
         {
             _stats = new Stats[4];
-            _stats[0] = new Stats(0, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f/2f, 0);
-            _stats[1] = new Stats(0, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f / 2f, 0);
-            _stats[2] = new Stats(0, 10, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f / 2f, 0);
-            _stats[3] = new Stats(0, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f, 1f/8f);
+            _stats[0] = new Stats(0, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f, 0);
+            _stats[1] = new Stats(0, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f, 0);
+            _stats[2] = new Stats(0, 10, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f, 0);
+            _stats[3] = new Stats(0, 50, 20, 50, 0, 0, 0, 0, 0, 0, 0, 0, 1f, 1f/8f);
         }
 
         private IEnumerator GameSystem()
