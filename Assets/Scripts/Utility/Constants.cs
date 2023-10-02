@@ -11,5 +11,6 @@
         public static short GAME_OVER_STRESS = 6;
         public static short GAME_OVER_NO_HEALTH = 7;
         public static short GAME_OVER_NO_MONEY = 8;
+        public static short WIN_SCENE = 9;
     }
 }
