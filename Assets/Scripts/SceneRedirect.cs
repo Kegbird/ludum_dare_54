@@ -14,13 +14,17 @@ public class SceneRedirect : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(HideBlackScreen());
+    }
+
+    public void RedirectClick()
+    {
         StartCoroutine(Redirect());
     }
 
-    private IEnumerator Redirect()
+    private IEnumerator HideBlackScreen()
     {
         float offset = 0.5f;
-
         for (float i = 1f; i >= 0; i -= Time.deltaTime)
         {
             _theme_audio_source.volume = 1f - i - offset;
@@ -28,9 +32,13 @@ public class SceneRedirect : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         _black_screen.color = new Color(0, 0, 0, 0f);
+        _black_screen.raycastTarget = false;
+    }
 
-        yield return new WaitForSeconds(3f);
-
+    private IEnumerator Redirect()
+    {
+        _black_screen.raycastTarget = true;
+        float offset = 0.5f;
         for (float i = 0; i <= 1f; i += Time.deltaTime)
         {
             _theme_audio_source.volume = 1f - i - offset;
@@ -38,7 +46,6 @@ public class SceneRedirect : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         _black_screen.color = new Color(0, 0, 0, 1f);
-        _black_screen.raycastTarget = false;
         SceneManager.LoadScene(_target_scene);
     }
 }
