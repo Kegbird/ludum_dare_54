@@ -194,7 +194,7 @@ namespace Managers
         {
             _selected_activity = (ActivityEnum) activity;
             _ui_manager.SetActivityButtonSelected(_selected_activity);
-            _sound_manager.PlaySoundFx(0, 0.5f);
+            _sound_manager.PlaySoundFx(0, 0.25f);
         }
 
         public void SetActiveActivity(int index)
@@ -213,7 +213,7 @@ namespace Managers
             _stats[_stats_index].DecreaseActivity(current_activity);
             _stats[_stats_index].IncreaseActivity(_selected_activity);
             _ui_manager.UpdateActiveActivityButton(index, _selected_activity, true);
-            _sound_manager.PlaySoundFx(1, 0.5f);
+            _sound_manager.PlaySoundFx(0, 0.25f);
 
         }
     }

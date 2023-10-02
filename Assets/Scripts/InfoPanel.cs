@@ -11,7 +11,7 @@ public class InfoPanel : MonoBehaviour
 
     public void CloseInfoPanel()
     {
-        _sound_manager.PlaySoundFx(0, 0.5f);
+        _sound_manager.PlaySoundFx(0, 0.25f);
         _info_panel.SetActive(false);
     }
 }

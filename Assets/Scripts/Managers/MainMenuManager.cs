@@ -27,7 +27,7 @@ namespace Managers
 
         public void PlayButtonClick()
         {
-            _sound_manager.PlaySoundFx(0, 0.5f);
+            _sound_manager.PlaySoundFx(0, 0.25f);
             IEnumerator ShowBlackScreenAndPlay()
             {
                 StartCoroutine(ShowBlackScreen());
@@ -39,20 +39,20 @@ namespace Managers
 
         public void TutorialButtonClick()
         {
-            _sound_manager.PlaySoundFx(0, 0.5f);
+            _sound_manager.PlaySoundFx(0, 0.25f);
             _tutorial_slide_index = 0;
             _tutorial_panel.gameObject.SetActive(true);
         }
 
         public void CreditsButtonClick()
         {
-            _sound_manager.PlaySoundFx(0, 0.5f);
+            _sound_manager.PlaySoundFx(0, 0.25f);
             _credits_panel.SetActive(true);
         }
 
         public void NextButtonClick()
         {
-            _sound_manager.PlaySoundFx(0, 0.5f);
+            _sound_manager.PlaySoundFx(0, 0.25f);
             _tutorial_slide_index++;
             if (_tutorial_slide_index == 4)
             {
@@ -65,13 +65,13 @@ namespace Managers
 
         public void BackButtonClick()
         {
-            _sound_manager.PlaySoundFx(0, 0.5f);
+            _sound_manager.PlaySoundFx(0, 0.25f);
             _credits_panel.SetActive(false);
         }
 
         public void ExitButtonClick()
         {
-            _sound_manager.PlaySoundFx(0, 0.5f);
+            _sound_manager.PlaySoundFx(0, 0.25f);
             IEnumerator ShowBlackScreenAndQuit()
             {
                 StartCoroutine(ShowBlackScreen());
